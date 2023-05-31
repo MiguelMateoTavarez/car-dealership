@@ -4,7 +4,19 @@
 
 # Car dealership
 
-Populate DB
+### Prepare the project
+
+```
+yarn
+```
+
+### Run the project
+
+```
+yarn start:dev
+```
+
+### Populate fake-DB
 
 ```
 http://localhost:3000/seed
