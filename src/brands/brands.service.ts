@@ -16,7 +16,7 @@ export class BrandsService {
   ]
 
   create(createBrandDto: CreateBrandDto) {
-    
+
     const brand: Brand = {
       id: uuid(),
       name: createBrandDto.name.toLocaleLowerCase(),
@@ -33,7 +33,7 @@ export class BrandsService {
 
   findOne(id: string) {
     const brand = this.brands.find(brand => brand.id === id);
-    if(!brand)
+    if (!brand)
       throw new NotFoundException(`Brand with id "${id} not found`);
 
     return brand;
@@ -42,10 +42,10 @@ export class BrandsService {
   update(id: string, updateBrandDto: UpdateBrandDto) {
     let brandDB = this.findOne(id);
 
-    this.brands = this.brands.map( brand => {
-      if(brand.id === id ) {
+    this.brands = this.brands.map(brand => {
+      if (brand.id === id) {
         brandDB.updatedAt = new Date().getTime();
-        brandDB = {...brandDB, ...updateBrandDto}
+        brandDB = { ...brandDB, ...updateBrandDto }
         return brandDB;
       }
       return brand;
@@ -55,6 +55,10 @@ export class BrandsService {
   }
 
   remove(id: string) {
-    this.brands = this.brands.filter( brand => brand.id !== id);
+    this.brands = this.brands.filter(brand => brand.id !== id);
+  }
+
+  fillCarsWithSeedData(brands: Brand[]) {
+    this.brands = brands;
   }
 }
